@@ -1,0 +1,17 @@
+<form action='/projects/<%= @project.id %>' method='post'>
+  <input type='hidden' name='_method' value='patch'>
+  <p>
+    <label for='name'>Name</label>
+    <input id='name' name='name' type='text' value='<%= @project.name %>'>
+  </p>
+  <p>
+    <label for='description'>Description</label>
+    <input id='description' name='description' type='text' value='<%= @project.description %>'>
+  </p>
+  <input type='submit' value='Update Project'>
+</form>
+
+<form action='/projects/<%= @project.id %>' method='post'>
+  <input type='hidden' name='_method' value='delete'>
+  <input type='submit' value='Delete Project'>
+</form>

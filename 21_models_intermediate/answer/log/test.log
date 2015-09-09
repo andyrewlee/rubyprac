@@ -1,0 +1,1350 @@
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "messages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "author" varchar(255), "message" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.1ms)[0m  CREATE  INDEX "index_messages_on_post_id" ON "messages" ("post_id")
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "blog_id" integer, "title" varchar(255), "content" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.8ms)[0m  CREATE  INDEX "index_posts_on_blog_id" ON "posts" ("blog_id")
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150622191358')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150622191315')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150622191348')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (0.7ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (0.8ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:14:57.057560"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.057560"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:14:57.062018"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.062018"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:14:57.064006"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.064006"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:14:57.065663"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.065663"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:14:57.067371"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.067371"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:14:57.068986"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.068986"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:14:57.070505"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.070505"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:14:57.072189"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.072189"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:14:57.074038"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:14:57.074038"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (0.9ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:40:44.986779"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:44.986779"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:40:44.991349"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:44.991349"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:40:44.993272"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:44.993272"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:40:44.995118"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:44.995118"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:40:44.996701"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:44.996701"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:40:44.998188"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:44.998188"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:40:44.999726"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:44.999726"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:40:45.002929"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:45.002929"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:40:45.004740"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:40:45.004740"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.5ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (0.8ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (0.7ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:23.163541"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.163541"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:23.182684"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.182684"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.185001"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:23.185001"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:23.188823"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.188823"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.190460"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:23.190460"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:41:23.195492"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:41:23.195492"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mMessage Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1[0m  [["post_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:23.206111"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.206111"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:23.208991"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.208991"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.210414"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:23.210414"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:41:23.211876"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:41:23.211876"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:23.214209"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.214209"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.215653"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:23.215653"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:23.219654"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.219654"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.221379"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:23.221379"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:23.227020"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.227020"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.228848"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:23.228848"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.230222"], ["title", "Another title"], ["updated_at", "2015-06-22 19:41:23.230222"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mPost Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35mPost Exists (0.1ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1  [["blog_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:23.235551"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:23.235551"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:23.237755"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:23.237755"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "blogs" WHERE "blogs"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:43.595490"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.595490"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.608216"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:43.608216"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:43.615756"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.615756"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.617450"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:43.617450"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:41:43.618659"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:41:43.618659"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:43.620889"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.620889"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.622064"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:43.622064"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:43.624817"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.624817"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:43.631197"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.631197"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.632774"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:43.632774"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:43.635478"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.635478"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.636920"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:43.636920"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:41:43.638371"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:41:43.638371"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mMessage Exists (0.1ms)[0m  SELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1  [["post_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:43.647978"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.647978"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:41:43.651951"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.651951"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.653256"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:43.653256"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.654313"], ["title", "Another title"], ["updated_at", "2015-06-22 19:41:43.654313"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mPost Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35mPost Exists (0.0ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1  [["blog_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:41:43.659214"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:41:43.659214"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:41:43.661309"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:41:43.661309"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "blogs" WHERE "blogs"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.7ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:25.766055"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.766055"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.781015"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:25.781015"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:42:25.786349"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:42:25.786349"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mMessage Exists (0.1ms)[0m  SELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1  [["post_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:25.793906"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.793906"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.795276"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:25.795276"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:25.798137"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.798137"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:25.804421"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.804421"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:25.808052"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.808052"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.809666"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:25.809666"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:42:25.811165"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:42:25.811165"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:25.813543"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.813543"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.815000"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:25.815000"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:25.819091"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.819091"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.820605"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:25.820605"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:25.824042"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.824042"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.825375"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:25.825375"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "blogs" WHERE "blogs"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:25.832697"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:25.832697"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.834574"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:25.834574"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:25.835871"], ["title", "Another title"], ["updated_at", "2015-06-22 19:42:25.835871"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mPost Exists (0.1ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1  [["blog_id", 1]]
+  [1m[36mPost Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.6ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (0.7ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (0.6ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:44.325298"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.325298"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.337718"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:44.337718"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:44.341812"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.341812"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:44.347140"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.347140"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:44.349816"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.349816"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.351124"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:44.351124"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:42:44.355447"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:42:44.355447"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mMessage Exists (0.1ms)[0m  SELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1  [["post_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:44.363367"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.363367"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.364780"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:44.364780"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:42:44.365970"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:42:44.365970"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:44.368084"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.368084"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.369229"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:44.369229"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:44.372654"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.372654"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.374106"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:44.374106"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:42:44.377765"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.377765"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.379447"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:44.379447"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.380726"], ["title", "Another title"], ["updated_at", "2015-06-22 19:42:44.380726"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mPost Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35mPost Exists (0.1ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1  [["blog_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:42:44.387118"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:42:44.387118"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:42:44.388421"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:42:44.388421"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "blogs" WHERE "blogs"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.5ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (0.8ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (0.7ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:02.405989"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.405989"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.419343"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:02.419343"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.421314"], ["title", "Another title"], ["updated_at", "2015-06-22 19:43:02.421314"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mPost Exists (0.1ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1  [["blog_id", 1]]
+  [1m[36mPost Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:02.436546"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.436546"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.438275"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:02.438275"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "blogs" WHERE "blogs"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:02.446891"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.446891"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.449027"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:02.449027"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:02.452631"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.452631"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:02.456153"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.456153"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.457729"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:02.457729"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:43:02.463337"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:43:02.463337"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mMessage Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1[0m  [["post_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:02.468591"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.468591"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:02.472811"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.472811"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.474527"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:02.474527"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:02.478858"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.478858"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.480237"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:02.480237"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:43:02.481501"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:43:02.481501"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:02.483785"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:02.483785"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:02.485018"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:02.485018"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (0.9ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:16.043210"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.043210"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.056085"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:16.056085"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:43:16.061615"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:43:16.061615"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mMessage Exists (0.1ms)[0m  SELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1  [["post_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:16.069460"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.069460"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.070876"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:16.070876"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:16.073865"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.073865"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:16.080672"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.080672"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:16.084265"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.084265"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.085912"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:16.085912"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:43:16.087611"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:43:16.087611"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:16.090443"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.090443"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.092100"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:16.092100"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:16.096229"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.096229"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.097639"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:16.097639"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:16.100980"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.100980"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.102354"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:16.102354"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "blogs" WHERE "blogs"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:16.109108"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:16.109108"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.118609"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:16.118609"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:16.120256"], ["title", "Another title"], ["updated_at", "2015-06-22 19:43:16.120256"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mPost Exists (0.1ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1  [["blog_id", 1]]
+  [1m[36mPost Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.5ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (0.8ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (0.7ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:35.501107"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.501107"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.513965"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:35.513965"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.515996"], ["title", "Another title"], ["updated_at", "2015-06-22 19:43:35.515996"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mPost Exists (0.1ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1  [["blog_id", 1]]
+  [1m[36mPost Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:35.526268"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.526268"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.528955"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:35.528955"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts"  WHERE "posts"."blog_id" = ?  [["blog_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "blogs" WHERE "blogs"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:35.537691"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.537691"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:35.542435"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.542435"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.544131"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:35.544131"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:35.546900"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.546900"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:35.549829"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.549829"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.551006"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:35.551006"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:43:35.555884"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:43:35.555884"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mMessage Exists (0.1ms)[0m  SELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1  [["post_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:35.560654"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.560654"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.562546"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:35.562546"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (7.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:43:35.573807"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.573807"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.575428"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:35.575428"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:43:35.576819"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:43:35.576819"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:43:35.579493"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:43:35.579493"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:43:35.581028"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:43:35.581028"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "blogs";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'blogs';
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "messages";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'messages';[0m
+  [1m[35m (0.9ms)[0m  DELETE FROM "posts";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'posts';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:44:17.147793"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.147793"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.162126"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:44:17.162126"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.164361"], ["title", "Another title"], ["updated_at", "2015-06-22 19:44:17.164361"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mPost Exists (0.1ms)[0m  SELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 1 LIMIT 1  [["blog_id", 1]]
+  [1m[36mPost Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "posts"  WHERE "posts"."blog_id" = ? AND "posts"."id" = 2 LIMIT 1[0m  [["blog_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.9ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:44:17.181259"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.181259"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.183025"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:44:17.183025"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT "posts".* FROM "posts"  WHERE "posts"."blog_id" = ?  [["blog_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "blogs" WHERE "blogs"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "posts"
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:44:17.190551"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.190551"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.191835"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:44:17.191835"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:44:17.194057"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.194057"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:44:17.197416"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.197416"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.199105"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:44:17.199105"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:44:17.205343"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:44:17.205343"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mMessage Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "messages"  WHERE "messages"."post_id" = ? AND "messages"."id" = 1 LIMIT 1[0m  [["post_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:44:17.210936"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.210936"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:44:17.214697"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.214697"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.216114"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:44:17.216114"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 19:44:17.220828"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.220828"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.222444"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:44:17.222444"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "messages" ("author", "created_at", "message", "post_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Phil Jackson"], ["created_at", "2015-06-22 19:44:17.223909"], ["message", "11 Rings"], ["post_id", 1], ["updated_at", "2015-06-22 19:44:17.223909"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "blogs" ("created_at", "description", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 19:44:17.226347"], ["description", "A Blog"], ["name", "Blog"], ["updated_at", "2015-06-22 19:44:17.226347"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("blog_id", "content", "created_at", "title", "updated_at") VALUES (?, ?, ?, ?, ?)  [["blog_id", 1], ["content", "Content"], ["created_at", "2015-06-22 19:44:17.235065"], ["title", "This is a title"], ["updated_at", "2015-06-22 19:44:17.235065"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m

@@ -1,0 +1,125 @@
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "friendships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "friend_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE  INDEX "index_friendships_on_friend_id" ON "friendships" ("friend_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendships_on_friend_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendships_on_friend_id' AND type='index'
+
+  [1m[36m (0.7ms)[0m  [1mCREATE  INDEX "index_friendships_on_user_id" ON "friendships" ("user_id")[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150622223029')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150622223013')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.2ms)[0m  [1mDELETE FROM "friendships";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'friendships';[0m
+  [1m[35m (0.7ms)[0m  DELETE FROM "users";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'users';
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:02.272096"], ["first_name", "Kobe"], ["last_name", "Bryant"], ["updated_at", "2015-06-22 22:34:02.272096"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:02.274929"], ["first_name", "Julius"], ["last_name", "Randle"], ["updated_at", "2015-06-22 22:34:02.274929"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:02.277792"], ["first_name", "Kobe"], ["last_name", "Bryant"], ["updated_at", "2015-06-22 22:34:02.277792"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:02.278556"], ["first_name", "Julius"], ["last_name", "Randle"], ["updated_at", "2015-06-22 22:34:02.278556"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:02.280516"], ["first_name", "Kobe"], ["last_name", "Bryant"], ["updated_at", "2015-06-22 22:34:02.280516"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:02.281168"], ["first_name", "Julius"], ["last_name", "Randle"], ["updated_at", "2015-06-22 22:34:02.281168"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:02.282015"], ["first_name", "Jordan"], ["last_name", "Clarkson"], ["updated_at", "2015-06-22 22:34:02.282015"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "friendships";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'friendships';
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "users";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'users';[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:41.901506"], ["first_name", "Kobe"], ["last_name", "Bryant"], ["updated_at", "2015-06-22 22:34:41.901506"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:41.904468"], ["first_name", "Julius"], ["last_name", "Randle"], ["updated_at", "2015-06-22 22:34:41.904468"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:41.906550"], ["first_name", "Jordan"], ["last_name", "Clarkson"], ["updated_at", "2015-06-22 22:34:41.906550"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "friendships" ("created_at", "friend_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:41.917043"], ["friend_id", 2], ["updated_at", "2015-06-22 22:34:41.917043"], ["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "friendships" ("created_at", "friend_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:41.918135"], ["friend_id", 3], ["updated_at", "2015-06-22 22:34:41.918135"], ["user_id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ? AND "users"."id" = 2 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ? AND "users"."id" = 3 LIMIT 1  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:41.929426"], ["first_name", "Kobe"], ["last_name", "Bryant"], ["updated_at", "2015-06-22 22:34:41.929426"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:41.930489"], ["first_name", "Julius"], ["last_name", "Randle"], ["updated_at", "2015-06-22 22:34:41.930489"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "friendships" ("created_at", "friend_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:41.931946"], ["friend_id", 2], ["updated_at", "2015-06-22 22:34:41.931946"], ["user_id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:41.935427"], ["first_name", "Kobe"], ["last_name", "Bryant"], ["updated_at", "2015-06-22 22:34:41.935427"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-06-22 22:34:41.936612"], ["first_name", "Julius"], ["last_name", "Randle"], ["updated_at", "2015-06-22 22:34:41.936612"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "friendships" ("created_at", "friend_id", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-06-22 22:34:41.938020"], ["friend_id", 2], ["updated_at", "2015-06-22 22:34:41.938020"], ["user_id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m

@@ -1,0 +1,325 @@
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "dojos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "city" varchar(255), "state" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "ninjas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "dojo_id" integer, "first_name" varchar(255), "last_name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  CREATE  INDEX "index_ninjas_on_dojo_id" ON "ninjas" ("dojo_id")
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150601223414')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150601223348')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.8ms)[0m  [1mDELETE FROM "dojos";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'dojos';[0m
+  [1m[35m (0.8ms)[0m  DELETE FROM "ninjas";
+  [1m[36m (0.1ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  DELETE FROM sqlite_sequence where name = 'ninjas';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:50:03.771800"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:50:03.771800"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:50:03.776948"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:50:03.776948"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:50:03.779006"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:50:03.779006"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:50:03.784318"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:50:03.784318"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:50:03.786144"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:50:03.786144"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  DELETE FROM "dojos";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'dojos';
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "ninjas";[0m
+  [1m[35m (0.1ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'ninjas';[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:13.536264"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:13.536264"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:13.541670"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:13.541670"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:13.544433"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:13.544433"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:13.546095"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:13.546095"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:13.547754"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:13.547754"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  DELETE FROM "dojos";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'dojos';
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "ninjas";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'ninjas';[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:26.987235"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:26.987235"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "ninjas" ("created_at", "dojo_id", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-06-01 22:51:27.005509"], ["dojo_id", 1], ["first_name", "Eduardo"], ["last_name", "Baik"], ["updated_at", "2015-06-01 22:51:27.005509"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ninjas"
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mNinja Load (0.1ms)[0m  SELECT "ninjas".* FROM "ninjas"  WHERE "ninjas"."dojo_id" = ?  [["dojo_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ninjas" WHERE "ninjas"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "dojos" WHERE "dojos"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "ninjas"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:27.013315"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:27.013315"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "ninjas" ("created_at", "dojo_id", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2015-06-01 22:51:27.014628"], ["dojo_id", 1], ["first_name", "Eduardo"], ["last_name", "Baik"], ["updated_at", "2015-06-01 22:51:27.014628"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "ninjas" ("created_at", "dojo_id", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-06-01 22:51:27.015591"], ["dojo_id", 1], ["first_name", "Brendan"], ["last_name", "Stanton"], ["updated_at", "2015-06-01 22:51:27.015591"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mNinja Exists (0.1ms)[0m  SELECT  1 AS one FROM "ninjas"  WHERE "ninjas"."dojo_id" = ? AND "ninjas"."id" = 1 LIMIT 1  [["dojo_id", 1]]
+  [1m[36mNinja Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ninjas"  WHERE "ninjas"."dojo_id" = ? AND "ninjas"."id" = 2 LIMIT 1[0m  [["dojo_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:27.044116"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:27.044116"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:27.047059"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:27.047059"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:27.050735"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:27.050735"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.7ms)[0m  DELETE FROM "dojos";
+  [1m[36m (0.2ms)[0m  [1mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM sqlite_sequence where name = 'dojos';
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "ninjas";[0m
+  [1m[35m (0.2ms)[0m  SELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';
+  [1m[36m (0.1ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'ninjas';[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:43.780761"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:43.780761"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:43.801431"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:43.801431"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:43.804771"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:43.804771"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:43.809471"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:43.809471"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "ninjas" ("created_at", "dojo_id", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2015-06-01 22:51:43.810793"], ["dojo_id", 1], ["first_name", "Eduardo"], ["last_name", "Baik"], ["updated_at", "2015-06-01 22:51:43.810793"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "ninjas" ("created_at", "dojo_id", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-06-01 22:51:43.812622"], ["dojo_id", 1], ["first_name", "Brendan"], ["last_name", "Stanton"], ["updated_at", "2015-06-01 22:51:43.812622"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35mNinja Exists (0.1ms)[0m  SELECT  1 AS one FROM "ninjas"  WHERE "ninjas"."dojo_id" = ? AND "ninjas"."id" = 1 LIMIT 1  [["dojo_id", 1]]
+  [1m[36mNinja Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ninjas"  WHERE "ninjas"."dojo_id" = ? AND "ninjas"."id" = 2 LIMIT 1[0m  [["dojo_id", 1]]
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "dojos" ("city", "created_at", "name", "state", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["city", "San Jose"], ["created_at", "2015-06-01 22:51:43.821881"], ["name", "Dream Team"], ["state", "CA"], ["updated_at", "2015-06-01 22:51:43.821881"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "ninjas" ("created_at", "dojo_id", "first_name", "last_name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-06-01 22:51:43.823818"], ["dojo_id", 1], ["first_name", "Eduardo"], ["last_name", "Baik"], ["updated_at", "2015-06-01 22:51:43.823818"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "ninjas"
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mNinja Load (0.1ms)[0m  SELECT "ninjas".* FROM "ninjas"  WHERE "ninjas"."dojo_id" = ?  [["dojo_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "ninjas" WHERE "ninjas"."id" = ?[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "dojos" WHERE "dojos"."id" = ?  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "ninjas"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
